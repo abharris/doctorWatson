@@ -5,26 +5,44 @@ $(document).ready(function() {
         json = data;
         // console.log("hi");
 
+        let final = false;
+        
         $.each(data.sentences_tone, function(key, val) {
-            // console.log("STARTING")
-            // console.log(val);
-            console.log(val.sentence_id);
-            let text = val.text.replace('\'', '');
 
-            if (val.sentence_id % 2 == 0){
-                // console.log("replacing")
-                console.log(val.sentence_id, val.text);
-                $(".chats").append("<div class='outgoing'></div>");
-                $(".outgoing").append("<div class='bubbleOut'>\'" +text+ "\'</div>");
+            setTimeout(function () {
+                // console.log("STARTING")
+                // console.log(data.sentences_tone.length);
+                // console.log(val);
+                
+                let text = val.text.replace('\'', '');
+                // console.log(text);
+    
+    
+                if (val.sentence_id % 2 == 0){
+                    $(".chats").append("<div class='outgoing' id=\'" +val.sentence_id+ "'\>");
+                    $("#" + val.sentence_id).append("<div class='bubbleOut'>" +text.toString()+ "</div>");
+                    $(".chats").append("</div>");
+                }
+                else {
+                    // console.log(val.sentence_id, val.text);
+                    $(".chats").append("<div class='incoming' id=\'" +val.sentence_id+ "'\>");
+                    $("#" + val.sentence_id).append("<div class='bubbleIn'>" +text+ "</div>");
+                    $("#" + val.sentence_id).append("<div class='.analysis'>\ Watson believes this text is " +val.tones[0].tone_name+ " with a score of " + val.tones[0].score + "\</div>");
+                    $(".chats").append("</div>");
+                }
 
-            }
-            else {
-                console.log(val.sentence_id, val.text);
-                $(".chats").append("<div class='incoming'></div>");
-                $(".incoming").append("<div class='bubbleIn'>\'" +text+ "\'</div>");
-                $(".incoming").append("<div class='.analysis'>\ Watson believes this text is " +val.tones[0].tone_name+ " with a score of " + val.tones[0].score + "\</div>");
-            }
+                if(key === (data.sentences_tone.length-1)) {
+                    $(".container").append("<div class='results'>Watson believes this conversation had an overall tone of "+data.document_tone.tones[0].tone_name+" with a score of "+data.document_tone.tones[0].score +"</div>");
+    
+                }
+    
+            }, key*2000);
+            
         });
+
+        // if(final) {
+        // }
+        
 
         // score = data.images[0].classifiers[1].classes[0].score;
         // img_url = data.images[0].image;
