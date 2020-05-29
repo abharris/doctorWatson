@@ -1,0 +1,97 @@
+/* inspiration from https://codepen.io/juliepark/pen/QxWVPv */
+
+@import url('https://fonts.googleapis.com/css?family=Lato:400,700');
+
+html {
+  min-height: 100%;
+}
+
+body {
+  background: #F9FBFF 100%;
+  font-family: 'Lato', sans-serif;
+}
+
+.container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 600px;
+}
+
+.top-bar {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  height: 12%;
+}
+
+p {
+  background-color: #A1E2D9;
+  border-radius: 20px;
+  padding: 5px;
+  margin: 10px;
+  color: #777777;
+}
+
+.chatbox {
+  border-radius: 10px;
+  box-shadow: 5px 5px 15px #777777;
+  height: 90%;
+  width: 60%;
+  overflow: scroll;
+}
+
+.chats {
+  background-color: #b8f2f1;
+  overflow: scroll;
+  height: 88%;
+  display: flex;
+  flex-direction: column;
+}
+
+.bubbleOut {
+  width: 45%;
+  padding: 5px;
+  background: #F9FBFF;
+  border-radius: 15px;
+  margin: 5px;
+
+}
+
+.bubbleIn {
+  width: 45%;
+  padding: 5px;
+  background: #79C7C5;
+  border-radius: 15px;
+  margin: 5px;
+
+}
+
+/* // .incoming {
+//   display: flex;
+//   justify-content: flex-start;
+// } */
+
+.incoming {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  /* // flex-direction: column;
+  // justify-content: flex-end;
+  // align-items: space-between;
+  // align-items: ; */
+}
+
+.oneMessage {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+}
+
+.analysis {
+  margin: 10px;
+  padding: 10px;
+  color: #777777;
+
+}
