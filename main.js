@@ -24,15 +24,22 @@ $(document).ready(function() {
                     $(".chats").append("</div>");
                 }
                 else {
-                    // console.log(val.sentence_id, val.text);
                     $(".chats").append("<div class='incoming' id=\'" +val.sentence_id+ "'\>");
                     $("#" + val.sentence_id).append("<div class='bubbleIn'>" +text+ "</div>");
-                    $("#" + val.sentence_id).append("<div class='.analysis'>\ Watson believes this text is " +val.tones[0].tone_name+ " with a score of " + val.tones[0].score + "\</div>");
+                    $.each(val.tones, function(k, v) {
+                        console.log("new emotion");
+                        console.log(v);
+                        console.log(v.score);
+                        console.log(v.tone_name);
+                        $("#" + val.sentence_id).append("<div class='.analysis'>\ Watson believes this text is " +v.tone_name+ " with a score of " + v.score + "\</div>");
+                    });
                     $(".chats").append("</div>");
                 }
 
                 if(key === (data.sentences_tone.length-1)) {
-                    $(".container").append("<div class='results'>Watson believes this conversation had an overall tone of "+data.document_tone.tones[0].tone_name+" with a score of "+data.document_tone.tones[0].score +"</div>");
+                    $.each(data.document_tone.tones, function(k, v) {
+                        $(".container").append("<div class='results'>Watson believes this conversation had an overall tone of "+v.tone_name+" with a score of "+v.score +"</div>");
+                    });
     
                 }
     
